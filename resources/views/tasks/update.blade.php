@@ -9,13 +9,13 @@
         <div class="form-group">
             <label for="">Importancia:</label>
 
-            <input type="radio" class="btn-check" name="importance" id="low" autocomplete="off" value="low" {{$task->importance=='low'? "checked=checked":''}}>
+            <input type="radio" class="btn-check" name="importance" id="low" autocomplete="off" value="low" {{$task->importance=='low'? "checked":''}}>
             <label class="btn btn-primary m-2" for="low">Low</label>
             
-            <input type="radio" class="btn-check" name="importance" id="medium" autocomplete="off" value="medium" {{$task->importance=='medium'? "checked=checked":''}}>
+            <input type="radio" class="btn-check" name="importance" id="medium" autocomplete="off" value="medium" {{$task->importance=='medium'? "checked":''}}>
             <label class="btn btn-success m-2" for="medium">Medium</label>
 
-            <input type="radio" class="btn-check" name="importance" id="high" autocomplete="off" value="high" {{$task->importance=='high'? "checked=checked":''}}>
+            <input type="radio" class="btn-check" name="importance" id="high" autocomplete="off" value="high" {{$task->importance=='high'? "active":''}}>
             <label class="btn btn-danger m-2" for="high">High</label>
         </div>
         <div class="form-group row">

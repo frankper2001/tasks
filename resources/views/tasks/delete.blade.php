@@ -3,7 +3,7 @@
 @section('titulo', "Confirmación de borrado de la task: $task->title")
 
 @section('contenido')
-    <form class="my-2 border p-5" method="POST" action="{{URL::temporarySignedRoute('tasks.destroy', now()->addMinutes(5), $task->id )}}">
+    <form class="my-2 border p-3" method="POST" action="{{URL::temporarySignedRoute('tasks.destroy', now()->addMinutes(5), $task->id )}}">
         {{csrf_field()}}
         <input type="hidden" name="_method" value="DELETE">
         <figure>
