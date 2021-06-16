@@ -8,6 +8,7 @@
         <input type="hidden" name="_method" value="PUT">
         <div class="form-group">
             <label for="">Importancia:</label>
+          
 
             <input type="radio" class="btn-check" name="importance" id="low" autocomplete="off" value="low" {{$task->importance=='low'? "checked":''}}>
             <label class="btn btn-primary m-2" for="low">Low</label>
@@ -15,7 +16,7 @@
             <input type="radio" class="btn-check" name="importance" id="medium" autocomplete="off" value="medium" {{$task->importance=='medium'? "checked":''}}>
             <label class="btn btn-success m-2" for="medium">Medium</label>
 
-            <input type="radio" class="btn-check" name="importance" id="high" autocomplete="off" value="high" {{$task->importance=='high'? "active":''}}>
+            <input type="radio" class="btn-check" name="importance" id="high" autocomplete="off" value="high" {{$task->importance=='high'? "checked":''}}>
             <label class="btn btn-danger m-2" for="high">High</label>
         </div>
         <div class="form-group row">
@@ -30,7 +31,16 @@
             <label for="inputCategory" class="col-sm-2 col-form-label">Category</label>
             <input type="text" name="category" class="up form-control col-sm-10" id="inputCategory" placeholder="Categoría" maxlength="50" required="required" value="{{$task->category}}">
         </div>
-        
+        <div class="form-group row">
+            <label for="inputMatricula" class="col-sm-2 col-form-label">Matricula</label>
+            <input type="text" name="matricula" class="up form-control col-sm-10" id="inputMatricula" placeholder="1234BCD" value="{{$task->matricula}}">
+        </div>
+        <input type="checkbox" id="activaColor"> 
+        <label for="activaColor">Activar selección de color</label>
+        <div class="form-group row">
+            <label for="inputColor" class="col-sm-2 col-form-label">Color</label>
+            <input type="color" name="color" class="up form-control col-sm-10" id="inputColor" disabled value="{{$task->color}}">
+        </div>
         <div class="form-group row my-3">
             <div class="col-sm-9">
                 <label for="inputImagen" class="col-sm-2 col-form-label">{{$task->imagen? 'Sustituir':'Añadir'}} imagen
@@ -75,6 +85,13 @@
             <img height="40" width="40" src="{{asset('images/buttons/delete.png')}}" alt="Borrar" title="Borrar"></a>
         </div>
    </div>
+
+   <script>
+        activaColor.onchange = function(){
+            inputColor.disabled = !activaColor.checked;
+        }
+   </script>
+
 @endsection
 
 @section('enlaces')

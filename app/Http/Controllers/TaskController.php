@@ -48,17 +48,21 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //validar datos con validator
+        //validar datos de entrada con validator
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required|max:255',
             'category' => 'required|max:255',
+            'matricula' => 'required|nullable|
+                            regex:/^\d{4}[B-Z]{3}$/i|
+                            unique:tasks',
+            'color' => 'nullable|regex:/^#[\dA-F]{6}$/i',
             'importance' => 'required|max:255',
             'imagen' => 'sometimes|file|image|mimes:jpg,png,gif,webp|max:2048'
         ]);
 
         //recuperar datos del formulario excepto la imagen
-        $datos = $request->only(['title','description','category','importance']);
+        $datos = $request->only(['title','description','category','matricula','color','importance']);
         //el valor por defecto para la imagen sera null
         $datos += ['imagen' =>NULL];
         //recuperacion de la imagen
@@ -129,12 +133,16 @@ class TaskController extends Controller
             'title' => 'required|max:255',
             'description' => 'required|max:255',
             'category' => 'required|max:255',
+            'matricula' => "required|nullable|
+                            regex:/^\d{4}[B-Z]{3}$/i|
+                            unique:tasks,matricula,$task->id",
+            'color' => 'nullable|regex:/^#[\dA-F]{6}$/i',
             'importance' => 'required|max:15',
             'imagen' => 'sometimes|file|image|mimes:jpg,png,gif,webp|max:2048'
         ]);
 
         //toma datos del formulario 
-        $datos = $request->only(['title','description','category','importance']);
+        $datos = $request->only(['title','description','category','matricula', 'color', 'importance']);
 
         if($request->hasFile('imagen')){
             //marcamos la imagen antigua para ser borrada si el update va bien

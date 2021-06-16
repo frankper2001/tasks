@@ -30,6 +30,14 @@
             <input type="text" name="category" class="up form-control col-sm-10" id="inputCategory" placeholder="Categoría" maxlength="50" required="required" value="{{old('category')}}">
         </div>
         <div class="form-group row">
+            <label for="inputMatricula" class="col-sm-2 col-form-label">Matricula</label>
+            <input type="text" name="matricula" class="up form-control col-sm-10" id="inputMatricula" placeholder="1234BCD" value="{{old('matricula')}}">
+        </div>
+        <div class="form-group row">
+            <label for="inputColor" class="col-sm-2 col-form-label">Color</label>
+            <input type="color" name="color" class="up form-control col-sm-10" id="inputColor"  value="{{old('color') ?? '#000000'}}">
+        </div>
+        <div class="form-group row">
             <label for="inputImagen" class="col-sm-2 col-form-label">Imagen</label>
             <input type="file" name="imagen" class="up form-control col-sm-10" id="inputImagen">
         </div>

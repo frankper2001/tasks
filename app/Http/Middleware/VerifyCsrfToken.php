@@ -12,8 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'shop'
-        //'tasks'  
+        'shop',
+        'tasks'  
         //Para poder usar POST con Postman
     ];
 }

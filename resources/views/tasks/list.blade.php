@@ -4,17 +4,16 @@
 
 @section('contenido')
 
-    <form method="POST" action="{{route('tasks.searchCategory')}}" class="col-4 d-flex flex-row">
+    <form method="POST" action="{{route('tasks.searchCategory')}}" class="col-4 d-flex flex-row mb-2">
         {{csrf_field()}}
-        <!-- <input name="title" type="text" class="col form-control m-2" placeholder="Title" maxlength="16"  value="{{empty($title)? '': $title}}">
-        <input name="description" type="text" class="col form-control m-2" placeholder="Description" maxlength="16"  value="{{empty($description)? '': $description}}"> -->
         <input name="category" type="text" class="form-control form-control-sm" placeholder="Categoria" maxlength="16"  value="{{empty($category)? '': $category}}">
         <button type="submit" class="col btn btn-primary m-2">Buscar</button>
     </form>
 
     <form method="POST" action="{{route('tasks.searchImportance')}}" class="col-4 d-flex flex-row pb-2">
         {{csrf_field()}}
-        <select name="importance" class="form-control form-control-sm">
+        <select name="importance" class="form-select form-select-sm" aria-label="Default select example">
+            <option selected>Importancia</option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
@@ -35,6 +34,8 @@
             <th>Title</th>
             <th>Description</th>
             <th>Category</th>
+            <th>Matricula</th>
+            <th>Color</th>
             <th>Importance</th>
             <th>Operaciones</th>
         </tr>
@@ -49,6 +50,8 @@
             <td>{{$task->title}}</td>
             <td>{{$task->description}}</td>
             <td>{{$task->category}}</td>
+            <td>{{$task->matricula}}</td>
+            <td style="background-color:{{$task->color}};">{{$task->color}}</td>
             <td>{{$task->importance}}</td>
             <td class="text-center">
                 <a href="{{route('tasks.show', $task->id)}}">

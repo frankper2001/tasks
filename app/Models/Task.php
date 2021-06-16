@@ -9,5 +9,5 @@ class Task extends Model
 {
     use HasFactory;
     //campos de BDD donde se permite asignacion masiva
-    protected $fillable = ['title', 'description', 'category', 'importance', 'imagen'];
+    protected $fillable = ['title', 'description', 'category', 'matricula', 'color','importance', 'imagen'];
 }
