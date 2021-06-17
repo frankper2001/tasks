@@ -33,6 +33,13 @@
             <label for="inputMatricula" class="col-sm-2 col-form-label">Matricula</label>
             <input type="text" name="matricula" class="up form-control col-sm-10" id="inputMatricula" placeholder="1234BCD" value="{{old('matricula')}}">
         </div>
+        <!-- Inserta campo de confirmacion de matricula -->
+        <div class="form-group row">
+            <label for="inputMatricula" class="col-sm-2 col-form-label">Confirmar Matricula</label>
+            <input type="text" name="matricula_confirmation" class="up form-control col-sm-10" id="inputMatricula">
+        </div>
+        <input type="checkbox" id="activaColor"> 
+        <label for="activaColor">Activar selección de color</label>
         <div class="form-group row">
             <label for="inputColor" class="col-sm-2 col-form-label">Color</label>
             <input type="color" name="color" class="up form-control col-sm-10" id="inputColor"  value="{{old('color') ?? '#000000'}}">
@@ -46,6 +53,13 @@
             <button type="reset" class="btn btn-secondary m-2">Borrar</button>
         </div>
     </form>
+
+    <script>
+        activaColor.onchange = function(){
+            inputColor.disabled = !activaColor.checked;
+        }
+   </script>
+
 @endsection
 
 @section('enlaces')

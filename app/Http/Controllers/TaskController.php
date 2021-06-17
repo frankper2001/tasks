@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\TaskStoreRequest;
+use App\Http\Requests\TaskUpdateRequest;
 
 class TaskController extends Controller
 {
@@ -46,19 +48,11 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskStoreRequest $request)
     {
         //validar datos de entrada con validator
         $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required|max:255',
-            'category' => 'required|max:255',
-            'matricula' => 'required|nullable|
-                            regex:/^\d{4}[B-Z]{3}$/i|
-                            unique:tasks',
-            'color' => 'nullable|regex:/^#[\dA-F]{6}$/i',
-            'importance' => 'required|max:255',
-            'imagen' => 'sometimes|file|image|mimes:jpg,png,gif,webp|max:2048'
+            // la validacion ahora esta en app/Html/Request/TaskStoreRequest LAR17->72
         ]);
 
         //recuperar datos del formulario excepto la imagen
@@ -130,15 +124,7 @@ class TaskController extends Controller
     {
         //validar datos con validator
         $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required|max:255',
-            'category' => 'required|max:255',
-            'matricula' => "required|nullable|
-                            regex:/^\d{4}[B-Z]{3}$/i|
-                            unique:tasks,matricula,$task->id",
-            'color' => 'nullable|regex:/^#[\dA-F]{6}$/i',
-            'importance' => 'required|max:15',
-            'imagen' => 'sometimes|file|image|mimes:jpg,png,gif,webp|max:2048'
+             // la validacion ahora esta en app/Html/Request/TaskUpdateRequest LAR17->72
         ]);
 
         //toma datos del formulario 

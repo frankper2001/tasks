@@ -51,11 +51,6 @@
                     <input type="checkbox" name="eliminarimagen" class="form-check-input" id="inputEliminar">
                     <label for="inputEliminar" class="form-check-label">Eliminar Imagen</label>
                 </div>
-                <script>
-                    inputEliminar.onchange = function(){
-                        inputImagen.disabled = this.checked;
-                    }
-                </script>
                 @endif
             </div>
             <div class="col-sm-3">
@@ -70,8 +65,6 @@
                     }}">
             </div>
         </div>
-
-
         <div class="form-group row">
             <button type="submit" class="btn btn-success m-2 mt-5">Guardar</button>
             <button type="reset" class="btn btn-secondary m-2">Reestablecer</button>
@@ -91,6 +84,11 @@
             inputColor.disabled = !activaColor.checked;
         }
    </script>
+   <script>
+        inputEliminar.onchange = function(){
+            inputImagen.disabled = this.checked;
+        }
+    </script>
 
 @endsection
 
