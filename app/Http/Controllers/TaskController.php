@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function __construct(){
         //pone un middleware solo a destroy
         //$this->middleware('throttle:3,1')->only('destroy');
-        $this->middleware('auth')->except('index', 'show', 'searchCategory', 'searchImportance');
+        $this->middleware('verified')->except('index', 'show', 'searchCategory', 'searchImportance');
     }
 
     /**
