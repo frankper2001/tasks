@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Http\Request;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +22,7 @@ Route::get('/', [WelcomeController::class, 'index'])->name('portada');
 
 //OPERACIONES CON LOS TASKS
 // editar la ultima moto guardada
-Route::get('tasks/editLast', [TaskController::class, 'editLast'])->name('tasks.editLast');
+Route::get('tasks/editLast', [TaskController::class, 'editLast'])->name('tasks.editLast')->middleware('auth');
 
 //PARA BUSCAR POR CRITERIOS
 //por title y/o description
@@ -65,3 +67,6 @@ Route::get('download/image', function (Request $request){
 Route::fallback(function(){
     return redirect()->route('portada');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
