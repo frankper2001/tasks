@@ -7,7 +7,7 @@
     <tr>
         <td>Imagen</td>
         <td class="text-start">
-            <img  alt="" class="rounded" style="max-width: 400px" 
+            <img  alt="" class="rounded" style="max-width: 200px" 
                 src="{{$task->imagen?
                     asset('storage/'.config('filesystems.tasksImageDir')).'/'.$task->imagen: 
                     asset('storage/'.config('filesystems.tasksImageDir')).'/'.'default.jpg' }}">
@@ -30,6 +30,7 @@
         <td>{{$task->importance}}</td>
     </tr>
 </table>
+@auth
 <div class="text-end my-3">
     <div class="btn-group mx-2">
         <a class="mx-2" href="{{route('tasks.edit', $task->id)}}">
@@ -38,7 +39,7 @@
         <img height="40" width="40" src="{{asset('images/buttons/delete.png')}}" alt="Borrar" title="Borrar"></a>
     </div>
 </div>
-
+@endauth
 @endsection
 
 @section('enlaces')

@@ -68,16 +68,18 @@
     @section('navegacion')
     @php($pagina=Route::currentRouteName())
     <nav>
-        <ul class="nav nav-pills nav-fill my-3">
+        <ul class="nav nav-pills my-3">
             <li class="nav-item mr-2">
                 <a class="nav-link {{$pagina=='portada'? 'active':''}}" href="{{url('/')}}">Inicio</a>
             </li>
             <li class="nav-item mr-2">
                 <a class="nav-link {{$pagina=='tasks.index' || $pagina=='tasks.search'? 'active':''}}" href="{{route('tasks.index')}}">Tasks</a>
             </li>
+            @auth
             <li class="nav-item">
                 <a class="nav-link {{$pagina=='tasks.create'? 'active':''}}" href="{{route('tasks.create')}}">New task</a>
             </li>
+            @endauth
         </ul>
     </nav>
     @show

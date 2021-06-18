@@ -23,9 +23,11 @@
 
     <div class="row">
         <div class="col-6 text-star">{{ $tasks->links() }}</div>
+        @auth
         <div class="col-6 text-end">
             <p>Nuevo task <a href="{{route('tasks.create')}}" class="btn btn-success ml-2">+</a></p>
         </div>
+        @endauth
     </div>
 
     <table class="table table-striped table-bordered">
@@ -56,10 +58,12 @@
             <td class="text-center">
                 <a href="{{route('tasks.show', $task->id)}}">
                 <img height="20" width="20" src="{{asset('images/buttons/show.png')}}" alt="Ver detalles" title="Ver detalles"></a>
+                @auth
                 <a href="{{route('tasks.edit', $task->id)}}">
                 <img height="20" width="20" src="{{asset('images/buttons/update.png')}}" alt="Modificar" title="Modificar"></a>
                 <a href="{{route('tasks.delete', $task->id)}}">
                 <img height="20" width="20" src="{{asset('images/buttons/delete.png')}}" alt="Borrar" title="Borrar"></a>
+                @endauth
             </td>
         </tr>
         @endforeach
