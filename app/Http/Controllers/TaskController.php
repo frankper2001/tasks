@@ -68,6 +68,8 @@ class TaskController extends Controller
             //nos quedamos solo con el nombre del fichero para añadirlo a la BDD
             $datos['imagen'] = pathinfo($ruta, PATHINFO_BASENAME);
         }
+        // recuperacion del id del usuario
+        $datos += ['user_id' => $request->user()->id];
         //creacion y guardado de la nueva task con los datos
         $task = Task::create($datos);
 
@@ -104,8 +106,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)    //implicit binding LAR09 70
+    public function edit(Request $request, Task $task)    //implicit binding LAR09 70
     {
+        if($request->user()->cant('edit',$task))
+        abort(401, 'No puedes eliminar esta tarea, no eres el propietario');
         // recupera task con id deseado
         //si no lo encuentra genera error 404
         //$task = Task::findOrFail($id);  
@@ -123,6 +127,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        if($request->user()->cant('update',$task))
+        abort(401, 'No puedes eliminar esta tarea, no eres el propietario');
         //validar datos con validator
         $request->validate([
              // la validacion ahora esta en app/Html/Request/TaskUpdateRequest LAR17->72
@@ -180,8 +186,11 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Task $task)
+    public function delete(Request $request, Task $task)
     {
+        if($request->user()->cant('delete',$task))
+        abort(401, 'No puedes eliminar esta tarea, no eres el propietario');
+
         //recupera task a eliminar
         //$task = Task::findOrFail($id);
         // muestra vista de confirmacion de eliminacion
@@ -190,6 +199,8 @@ class TaskController extends Controller
 
     public function destroy(Request $request, Task $task)
     {
+        if($request->user()->cant('destroy',$task))
+        abort(401, 'No puedes eliminar esta tarea, no eres el propietario');
        /*  if(!$request->hasValidSignature())
             abort (401, 'La firma de la URL no se ha podido validar');
         //busca el task seleccionado

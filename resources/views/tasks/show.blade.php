@@ -33,10 +33,14 @@
 @auth
 <div class="text-end my-3">
     <div class="btn-group mx-2">
+        @if(Auth::user()->can('update',$task))
         <a class="mx-2" href="{{route('tasks.edit', $task->id)}}">
         <img height="40" width="40" src="{{asset('images/buttons/update.png')}}" alt="Modificar" title="Modificar"></a>
+        @endif
+        @if(Auth::user()->can('delete',$task))
         <a class="mx-2" href="{{route('tasks.delete', $task->id)}}">
         <img height="40" width="40" src="{{asset('images/buttons/delete.png')}}" alt="Borrar" title="Borrar"></a>
+        @endif
     </div>
 </div>
 @endauth

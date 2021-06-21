@@ -59,10 +59,14 @@
                 <a href="{{route('tasks.show', $task->id)}}">
                 <img height="20" width="20" src="{{asset('images/buttons/show.png')}}" alt="Ver detalles" title="Ver detalles"></a>
                 @auth
+                @if(Auth::user()->can('update',$task))
                 <a href="{{route('tasks.edit', $task->id)}}">
                 <img height="20" width="20" src="{{asset('images/buttons/update.png')}}" alt="Modificar" title="Modificar"></a>
+                @endif
+                @if(Auth::user()->can('delete',$task))
                 <a href="{{route('tasks.delete', $task->id)}}">
                 <img height="20" width="20" src="{{asset('images/buttons/delete.png')}}" alt="Borrar" title="Borrar"></a>
+                @endif
                 @endauth
             </td>
         </tr>
