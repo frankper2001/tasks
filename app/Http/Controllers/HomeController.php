@@ -21,8 +21,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        //recupera las tareas del usuario
+        $tasks = $request->user()->tasks()->paginate(10);
+        //carga la vista home pasandole las tareas
+        return view('home', ['tasks'=>$tasks]);
     }
 }

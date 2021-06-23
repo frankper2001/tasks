@@ -40,4 +40,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //metodo que recupera todas las tareas relacionadas con el usuario
+    public function tasks(){
+        return $this->hasMany('\App\Models\Task');
+    }
 }

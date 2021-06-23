@@ -74,11 +74,14 @@
                 <a class="nav-link {{$pagina=='portada'? 'active':''}}" href="{{url('/')}}">Inicio</a>
             </li>
             <li class="nav-item mr-2">
-                <a class="nav-link {{$pagina=='tasks.index' || $pagina=='tasks.search'? 'active':''}}" href="{{route('tasks.index')}}">Tasks</a>
+                <a class="nav-link {{$pagina=='tasks.index' || $pagina=='tasks.search'? 'active':''}}" href="{{route('tasks.index')}}">Tareas</a>
             </li>
             @auth
             <li class="nav-item">
-                <a class="nav-link {{$pagina=='tasks.create'? 'active':''}}" href="{{route('tasks.create')}}">New task</a>
+                <a class="nav-link {{$pagina=='home'? 'active':''}}" href="{{route('home')}}">Mis Tareas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{$pagina=='tasks.create'? 'active':''}}" href="{{route('tasks.create')}}">Nueva Tarea</a>
             </li>
             @endauth
         </ul>
@@ -92,7 +95,7 @@
         @includeWhen(Session::has('success'), 'layouts.success')
         @includeWhen($errors->any(), 'layouts.error')
 
-        <p>Actualmente tienes {{$total}} tareas guardadas.</p>
+        <p>Actualmente hay {{$total}} tareas guardadas.</p>
 
         @yield('contenido')
 
