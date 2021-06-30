@@ -22,6 +22,10 @@
         <td>{{$task->description}}</td>
     </tr>
     <tr>
+        <td>Propietario</td>
+        <td>{{$task->user ? $task->user->name : 'Sin propietario'}}</td>
+    </tr>
+    <tr>
         <td>Categoria</td>
         <td>{{$task->category}}</td>
     </tr>
